@@ -18,7 +18,7 @@ A high-fidelity, highly-optimized service that generates real-time portfolio car
 
 </div>
 
----
+<br />
 
 ## ✨ Why Impact Cards?
 
@@ -29,7 +29,7 @@ Impact Cards was built with a core focus on **design excellence** and **data acc
 - **📱 Dynamic Responsiveness:** Intelligently scales font sizes to ensure your username never overflows, keeping the design pixel-perfect.
 - **🚀 High Performance:** Incorporates intelligent edge-caching to deliver your SVG instantly without hitting GitHub API rate limits.
 
----
+<br />
 
 ## 🚀 Usage Guide
 
@@ -37,17 +37,9 @@ Adding this to your profile is incredibly simple. Just copy and paste one of the
 
 > 💡 **Pro Tip:** Replace `manoj-chavan-13` with your own GitHub username!
 
-### 📝 Markdown
+### 📝 Main Impact Card
 
-Use this for a standard, inline integration:
-
-```md
-![My GitHub Impact](https://github-profile-card-ten.vercel.app/api/impact?username=manoj-chavan-13)
-```
-
-### 🌐 HTML (Recommended)
-
-Use HTML if you want to perfectly center the card on your profile page:
+<img src="https://github-profile-card-ten.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card Preview" width="100%" />
 
 ```html
 <p align="center">
@@ -57,13 +49,13 @@ Use HTML if you want to perfectly center the card on your profile page:
 </p>
 ```
 
+<br />
+
 ### 🛣️ Engineering Journey Card
 
 You can also showcase your tech stack journey using the `/api/journey` endpoint. It perfectly plots your path!
 
-```md
-![My Journey](https://github-profile-card-ten.vercel.app/api/journey?steps=Coding,MERN%20Stack,Mobile%20Apps,AI%20Systems,CloudSec)
-```
+<img src="https://github-profile-card-ten.vercel.app/api/journey?steps=Coding,MERN%20Stack,Mobile%20Apps,AI%20Systems,CloudSec" alt="Engineering Journey" width="100%" />
 
 ```html
 <p align="center">
@@ -71,27 +63,61 @@ You can also showcase your tech stack journey using the `/api/journey` endpoint.
 </p>
 ```
 
+<br />
+
 ### 🏷️ Micro-Badges
 
-Enhance your profile with these premium, compact badges:
+Enhance your profile with these premium, compact badges. Here is a live preview of each badge alongside the code you need to embed it!
 
-```html
-<!-- Followers Badge -->
+#### 👥 Followers Badge
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&value=1.2K" alt="Followers" />
 
-<!-- Profile Views Badge -->
+```html
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&value=1.2K" alt="Followers" />
+```
+
+<br />
+
+#### 👀 Profile Views Badge
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&value=12587" alt="Views" />
 
-<!-- Status Badge -->
+```html
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&value=12587" alt="Views" />
+```
+
+<br />
+
+#### 🟢 Collaboration Status Badge
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=status&text=OPEN%20TO%20COLLABORATION" alt="Status" />
 
-<!-- Focus Badge -->
+```html
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=status&text=OPEN%20TO%20COLLABORATION" alt="Status" />
+```
+
+<br />
+
+#### 🎯 Focus Badge
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=focus&text=FULL%20STACK%20DEVELOPMENT" alt="Focus" />
 
-<!-- Learning Badge -->
+```html
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=focus&text=FULL%20STACK%20DEVELOPMENT" alt="Focus" />
+```
+
+<br />
+
+#### 📚 Learning Badge
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=learning&text=LEARNING%20CLOUDSEC" alt="Learning" />
 
-<!-- Building Badge -->
+```html
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=learning&text=LEARNING%20CLOUDSEC" alt="Learning" />
+```
+
+<br />
+
+#### 🏗️ Building Badge
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=building&text=BUILDING%20AI" alt="Building" />
+
+```html
 <img src="https://github-profile-card-ten.vercel.app/api/badge?type=building&text=BUILDING%20AI" alt="Building" />
 ```
 
