@@ -101,3 +101,46 @@ const getLongestStreak = (weeks: any[]): number => {
 
   return longestStreak;
 };
+
+export const getFollowers = async (username: string): Promise<number | null> => {
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    console.error('GITHUB_TOKEN is not defined');
+    return null;
+  }
+
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query ($login: String!) {
+            user(login: $login) {
+              followers {
+                totalCount
+              }
+            }
+          }
+        `,
+        variables: { login: username },
+      }),
+    });
+
+    const result: any = await response.json();
+
+    if (result.errors || !result.data || !result.data.user) {
+      console.error('GitHub API errors:', result.errors);
+      return null;
+    }
+
+    return result.data.user.followers.totalCount;
+  } catch (error) {
+    console.error('Error fetching followers from GitHub:', error);
+    return null;
+  }
+};
