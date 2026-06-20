@@ -106,15 +106,9 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
       const nx = point.x + dir.dx;
       const ny = point.y + dir.dy;
 
-      if (nx >= 0 && nx < cols && ny >= -1 && ny <= rows) {
-        let isWall = false;
-        if (ny >= 0 && ny < rows) {
-          isWall = grid[nx][ny] === 1;
-        }
-
-        if (!isWall) {
-          const moveCost = (ny === -1 || ny === rows) ? 1000 : 1; // Heavy penalty for outside
-          const newCost = cost + moveCost;
+      if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
+        if (grid[nx][ny] === 0) {
+          const newCost = cost + 1;
           
           if (newCost < (costs.get(`${nx},${ny}`) ?? Infinity)) {
             costs.set(`${nx},${ny}`, newCost);
