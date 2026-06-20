@@ -65,6 +65,20 @@ You can also showcase your tech stack journey using the `/api/journey` endpoint.
 
 <br />
 
+### 🐛 Contribution Bug Explorer (Premium Defense Dashboard)
+
+Turn your GitHub contribution graph into a living cyber-security dashboard! This endpoint uses real pathfinding algorithms (BFS) to navigate a "bug" through your empty contribution cells. The more active you are, the harder it is for the bug to survive!
+
+<img src="https://github-profile-card-ten.vercel.app/api/contribution-bug?username=manoj-chavan-13" alt="Contribution Bug Explorer" width="100%" />
+
+```html
+<p align="center">
+  <img src="https://github-profile-card-ten.vercel.app/api/contribution-bug?username=manoj-chavan-13" alt="Contribution Bug" width="100%" />
+</p>
+```
+
+<br />
+
 ### 🏷️ Micro-Badges
 
 Enhance your profile with these premium, compact badges. Here is a live preview of each badge alongside the code you need to embed it!
