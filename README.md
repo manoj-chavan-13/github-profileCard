@@ -69,20 +69,20 @@ You can also showcase your tech stack journey using the `/api/journey` endpoint.
 
 Enhance your profile with these premium, compact badges. Here is a live preview of each badge alongside the code you need to embed it!
 
-#### 👥 Followers Badge
-<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&value=1.2K" alt="Followers" />
+#### 👥 Followers Badge (Live from GitHub)
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&username=manoj-chavan-13" alt="Followers" />
 
 ```html
-<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&value=1.2K" alt="Followers" />
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&username=manoj-chavan-13" alt="Followers" />
 ```
 
 <br />
 
-#### 👀 Profile Views Badge
-<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&value=12587" alt="Views" />
+#### 👀 Profile Views Badge (Dynamic Counter)
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&username=manoj-chavan-13" alt="Views" />
 
 ```html
-<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&value=12587" alt="Views" />
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&username=manoj-chavan-13" alt="Views" />
 ```
 
 <br />

@@ -2,10 +2,11 @@ import { escapeSvg } from '../utils/escapeSvg';
 
 export const generateBuildingBadge = (text: string): string => {
   const safeText = escapeSvg(text);
+  const width = Math.max(80, 28 + text.length * 8 + 20);
   return `
-<svg width="170" height="38" xmlns="http://www.w3.org/2000/svg">
+<svg width="${width}" height="38" xmlns="http://www.w3.org/2000/svg">
 
-<rect width="170"
+<rect width="${width}"
       height="38"
       rx="10"
       fill="#0D1117"/>

@@ -72,6 +72,7 @@ export const getUserData = async (username: string): Promise<GitHubData | null> 
 
     return {
       username: user.login.toUpperCase(), // Uppercase as in the design
+      followers: user.followers.totalCount,
       repositories,
       stars,
       allTimeContributions,

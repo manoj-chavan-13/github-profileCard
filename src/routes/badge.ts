@@ -5,22 +5,34 @@ import { generateStatusBadge } from '../svg/status';
 import { generateFocusBadge } from '../svg/focus';
 import { generateLearningBadge } from '../svg/learning';
 import { generateBuildingBadge } from '../svg/building';
+import { getUserData } from '../github/github.service';
+import { formatWatermark } from '../utils/format';
 
 const router = Router();
+const viewsCounter: Record<string, number> = {};
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const type = req.query.type as string;
-    const value = req.query.value as string || 'N/A';
+    let value = req.query.value as string || 'N/A';
     const text = req.query.text as string || 'DEFAULT';
+    const username = req.query.username as string;
 
     let svg = '';
 
     switch (type) {
       case 'followers':
+        if (username) {
+          const data = await getUserData(username);
+          if (data) value = formatWatermark(data.followers);
+        }
         svg = generateFollowersBadge(value);
         break;
       case 'views':
+        if (username) {
+          viewsCounter[username] = (viewsCounter[username] || 0) + 1;
+          value = viewsCounter[username].toString();
+        }
         svg = generateViewsBadge(value);
         break;
       case 'status':
@@ -41,6 +53,10 @@ router.get('/', (req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=86400');
+    // Views shouldn't be heavily cached if they want to see live updates, but following the prompt instructions
+    if (type === 'views') {
+        res.setHeader('Cache-Control', 'no-cache, max-age=0');
+    }
     res.send(svg);
   } catch (error) {
     console.error('Error generating badge:', error);

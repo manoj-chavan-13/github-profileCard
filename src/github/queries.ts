@@ -3,6 +3,9 @@ export const USER_DATA_QUERY = `
     user(login: $login) {
       name
       login
+      followers {
+        totalCount
+      }
       repositories(first: 100, ownerAffiliations: [OWNER], isFork: false, privacy: PUBLIC) {
         totalCount
         nodes {
