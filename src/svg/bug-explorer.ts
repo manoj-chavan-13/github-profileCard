@@ -103,8 +103,13 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
       const nx = point.x + dir.dx;
       const ny = point.y + dir.dy;
 
-      if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
-        if (grid[nx][ny] === 0 && !visited.has(`${nx},${ny}`)) {
+      if (nx >= 0 && nx < cols && ny >= -1 && ny <= rows) {
+        let isWall = false;
+        if (ny >= 0 && ny < rows) {
+          isWall = grid[nx][ny] === 1;
+        }
+
+        if (!isWall && !visited.has(`${nx},${ny}`)) {
           visited.add(`${nx},${ny}`);
           queue.push({ point: { x: nx, y: ny }, path: [...path, { x: nx, y: ny }] });
         }
@@ -150,13 +155,15 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
 
   // Add slight hesitation logic to path using keyTimes and keyPoints (too complex for pure SVG without massive strings, so we just use a smooth linear motion that traces perfectly)
   
+  const currentYear = new Date().getFullYear();
+
   return `
 <svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
   <rect width="900" height="400" fill="#0D1117" rx="15" />
   
   <!-- Header -->
   <text x="50" y="50" fill="#8B949E" font-size="12" letter-spacing="2" font-family="Segoe UI, sans-serif" font-weight="600">
-    CONTRIBUTION DEFENSE SYSTEM
+    CONTRIBUTION DEFENSE SYSTEM // ${currentYear}
   </text>
   
   <!-- Metrics -->
