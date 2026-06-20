@@ -71,6 +71,30 @@ You can also showcase your tech stack journey using the `/api/journey` endpoint.
 </p>
 ```
 
+### 🏷️ Micro-Badges
+
+Enhance your profile with these premium, compact badges:
+
+```html
+<!-- Followers Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=followers&value=1.2K" alt="Followers" />
+
+<!-- Profile Views Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=views&value=12587" alt="Views" />
+
+<!-- Status Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=status&text=OPEN%20TO%20COLLABORATION" alt="Status" />
+
+<!-- Focus Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=focus&text=FULL%20STACK%20DEVELOPMENT" alt="Focus" />
+
+<!-- Learning Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=learning&text=LEARNING%20CLOUDSEC" alt="Learning" />
+
+<!-- Building Badge -->
+<img src="https://github-profile-card-ten.vercel.app/api/badge?type=building&text=BUILDING%20AI" alt="Building" />
+```
+
 <br />
 
 <div align="center">
