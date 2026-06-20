@@ -153,9 +153,11 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
     pathD = `M ${startX} ${startY + 3*(cellSize+cellGap)} L ${startX + cols*(cellSize+cellGap)} ${startY + 3*(cellSize+cellGap)}`;
   }
 
+  const currentYear = data.year;
+
   // Add slight hesitation logic to path using keyTimes and keyPoints (too complex for pure SVG without massive strings, so we just use a smooth linear motion that traces perfectly)
-  
-  const currentYear = new Date().getFullYear();
+  // We append a random ID so GitHub proxy sees it uniquely if needed
+  const uniqueId = Math.random().toString(36).substring(7);
 
   return `
 <svg width="900" height="400" viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
@@ -163,7 +165,11 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
   
   <!-- Header -->
   <text x="50" y="50" fill="#8B949E" font-size="12" letter-spacing="2" font-family="Segoe UI, sans-serif" font-weight="600">
-    CONTRIBUTION DEFENSE SYSTEM // ${currentYear}
+    CONTRIBUTION DEFENSE SYSTEM // YEAR: ${currentYear}
+  </text>
+  
+  <text x="850" y="50" fill="#8B949E" font-size="10" text-anchor="end" font-family="Segoe UI, sans-serif" opacity="0.3">
+    VER: ${uniqueId}
   </text>
   
   <!-- Metrics -->

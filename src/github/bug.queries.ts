@@ -1,7 +1,7 @@
-export const BUG_EXPLORER_QUERY = `
+export const generateBugExplorerQuery = (from: string, to: string) => `
   query bugExplorer($login: String!) {
     user(login: $login) {
-      contributionsCollection {
+      contributionsCollection(from: "${from}", to: "${to}") {
         contributionCalendar {
           totalContributions
           weeks {

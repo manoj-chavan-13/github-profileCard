@@ -1,8 +1,9 @@
-import { BUG_EXPLORER_QUERY } from './bug.queries';
+import { generateBugExplorerQuery } from './bug.queries';
 
 export interface BugExplorerData {
   totalContributions: number;
   weeks: any[];
+  year: number;
 }
 
 export const getBugExplorerData = async (username: string): Promise<BugExplorerData | null> => {
@@ -14,6 +15,10 @@ export const getBugExplorerData = async (username: string): Promise<BugExplorerD
   }
 
   try {
+    const currentYear = new Date().getFullYear();
+    const from = `${currentYear}-01-01T00:00:00Z`;
+    const to = `${currentYear}-12-31T23:59:59Z`;
+
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
       headers: {
@@ -21,7 +26,7 @@ export const getBugExplorerData = async (username: string): Promise<BugExplorerD
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: BUG_EXPLORER_QUERY,
+        query: generateBugExplorerQuery(from, to),
         variables: { login: username },
       }),
     });
@@ -38,6 +43,7 @@ export const getBugExplorerData = async (username: string): Promise<BugExplorerD
     return {
       totalContributions: calendar.totalContributions,
       weeks: calendar.weeks,
+      year: currentYear
     };
   } catch (error) {
     console.error('Error fetching bug explorer data from GitHub:', error);
