@@ -68,12 +68,12 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
   // If no empty spots in col 0, allow starting on walls just so bug exists
   if (startNodes.length === 0) startNodes.push({ x: 0, y: 3 });
 
-  const queue: { point: Point, path: Point[] }[] = [];
-  const visited = new Set<string>();
+  const queue: { point: Point, path: Point[], cost: number }[] = [];
+  const costs = new Map<string, number>();
 
   for (const start of startNodes) {
-    queue.push({ point: start, path: [start] });
-    visited.add(`0,${start.y}`);
+    queue.push({ point: start, path: [start], cost: 0 });
+    costs.set(`${start.x},${start.y}`, 0);
   }
 
   let bestPath: Point[] = queue.length > 0 ? queue[0].path : [];
@@ -87,7 +87,10 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
   ];
 
   while (queue.length > 0) {
-    const { point, path } = queue.shift()!;
+    queue.sort((a, b) => a.cost - b.cost); // Priority queue
+    const { point, path, cost } = queue.shift()!;
+
+    if (cost > (costs.get(`${point.x},${point.y}`) ?? Infinity)) continue;
 
     if (point.x > maxCol) {
       maxCol = point.x;
@@ -109,9 +112,14 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
           isWall = grid[nx][ny] === 1;
         }
 
-        if (!isWall && !visited.has(`${nx},${ny}`)) {
-          visited.add(`${nx},${ny}`);
-          queue.push({ point: { x: nx, y: ny }, path: [...path, { x: nx, y: ny }] });
+        if (!isWall) {
+          const moveCost = (ny === -1 || ny === rows) ? 1000 : 1; // Heavy penalty for outside
+          const newCost = cost + moveCost;
+          
+          if (newCost < (costs.get(`${nx},${ny}`) ?? Infinity)) {
+            costs.set(`${nx},${ny}`, newCost);
+            queue.push({ point: { x: nx, y: ny }, path: [...path, { x: nx, y: ny }], cost: newCost });
+          }
         }
       }
     }
