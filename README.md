@@ -67,7 +67,7 @@ You can also showcase your tech stack journey using the `/api/journey` endpoint.
 
 ### 🐛 Contribution Bug Explorer (Premium Defense Dashboard)
 
-Turn your GitHub contribution graph into a living cyber-security dashboard! This endpoint uses real pathfinding algorithms (BFS) to navigate a "bug" through your empty contribution cells. The more active you are, the harder it is for the bug to survive!
+Turn your GitHub contribution graph into a living cyber-security dashboard! This endpoint actively renders your **current year** graph and uses real pathfinding algorithms (BFS) to navigate a "bug" through your empty contribution cells. The more active you are, the harder it is for the bug to survive! If a week is completely blocked, the bug intelligently routes *outside* the grid to bypass your defenses.
 
 <img src="https://github-profile-card-ten.vercel.app/api/contribution-bug?username=manoj-chavan-13" alt="Contribution Bug Explorer" width="100%" />
 
