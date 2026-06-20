@@ -12,7 +12,7 @@ Elevate your GitHub profile with premium, portfolio-quality dynamic SVG cards. G
 ## 🖼️ How it looks
 
 <p align="center">
-  <img src="https://github-profileCard.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card Preview" />
+  <img src="https://github-profile-card-ten.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card Preview" />
 </p>
 
 ## 🚀 How to use
@@ -21,12 +21,12 @@ You can use the hosted API directly in your GitHub profile `README.md`! Just add
 
 ### Markdown:
 ```md
-![My GitHub Impact](https://github-profileCard.vercel.app/api/impact?username=manoj-chavan-13)
+![My GitHub Impact](https://github-profile-card-ten.vercel.app/api/impact?username=manoj-chavan-13)
 ```
 
 ### HTML (Recommended for centering):
 ```html
 <p align="center">
-  <img src="https://github-profileCard.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card" />
+  <img src="https://github-profile-card-ten.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card" />
 </p>
 ```
