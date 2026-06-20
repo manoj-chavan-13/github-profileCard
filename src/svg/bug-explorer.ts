@@ -125,16 +125,32 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
     }
   }
 
-  // Draw grid
+  // Draw grid and collect months
   const cellSize = 11;
   const cellGap = 3;
   const startX = 50;
-  const startY = 150;
+  const startY = 160;
   
   let gridSvg = '';
+  let monthLabelsSvg = '';
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let lastMonth = -1;
   
   for (let x = 0; x < cols; x++) {
     const days = weeks[x].contributionDays;
+    
+    // Month label logic
+    if (days.length > 0) {
+      const firstDayDate = new Date(days[0].date);
+      const currentMonth = firstDayDate.getMonth();
+      if (currentMonth !== lastMonth && x < cols - 2) {
+        const monthX = startX + x * (cellSize + cellGap);
+        const monthY = startY - 10;
+        monthLabelsSvg += `<text x="${monthX}" y="${monthY}" fill="#8B949E" font-size="10" font-family="Segoe UI, sans-serif">${monthNames[currentMonth]}</text>\n`;
+        lastMonth = currentMonth;
+      }
+    }
+
     for (const day of days) {
       const y = new Date(day.date).getDay();
       const rectX = startX + x * (cellSize + cellGap);
@@ -162,9 +178,6 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
   }
 
   const currentYear = data.year;
-
-  // Add slight hesitation logic to path using keyTimes and keyPoints (too complex for pure SVG without massive strings, so we just use a smooth linear motion that traces perfectly)
-  // We append a random ID so GitHub proxy sees it uniquely if needed
   const uniqueId = Math.random().toString(36).substring(7);
 
   return `
@@ -205,20 +218,20 @@ export const generateBugExplorerSvg = (data: BugExplorerData): string => {
 
   <!-- Grid -->
   <g>
+    ${monthLabelsSvg}
     ${gridSvg}
   </g>
 
   <!-- Scanner Trail -->
   <path d="${pathD}" fill="none" stroke="#58A6FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" />
 
-  <!-- Bug -->
+  <!-- Bug Entity -->
   <g>
-    <!-- Bug visual -->
-    <circle cx="0" cy="0" r="4" fill="#DA3633" />
-    <circle cx="0" cy="0" r="1.5" fill="#FFFFFF" />
-    
-    <!-- Legs -->
-    <path d="M-4 -4 L0 0 M4 -4 L0 0 M-4 4 L0 0 M4 4 L0 0" stroke="#F85149" stroke-width="1.5" opacity="0.8" />
+    <!-- Professional Bug Icon (Lucide Bug modified for dark cyber theme) -->
+    <g transform="translate(-12, -12) scale(1.1)">
+      <path d="M8 2 L9.88 3.88 M16 2 L14.12 3.88 M9 7.13 V6 a3 3 0 1 1 6 0 V7.13 M12 20 c-3.3 0-6-2.7-6-6 V11 a4 4 0 0 1 4-4 h4 a4 4 0 0 1 4 4 v3 c0 3.3-2.7 6-6 6 M12 20 V11 M6.53 9 C4.6 8.8 3 7.1 3 5 M17.47 9 C19.4 8.8 21 7.1 21 5 M8 14 H4 M20 14 H16 M9 18 h6" stroke="#DA3633" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <circle cx="12" cy="11" r="1.5" fill="#F85149" />
+    </g>
     
     <!-- Motion -->
     <animateMotion dur="20s" repeatCount="indefinite" path="${pathD}" />
