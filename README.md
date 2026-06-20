@@ -53,6 +53,20 @@ Use HTML if you want to perfectly center the card on your profile page:
 </p>
 ```
 
+### 🛣️ Engineering Journey Card
+
+You can also showcase your tech stack journey using the `/api/journey` endpoint. It perfectly plots your path!
+
+```md
+![My Journey](https://github-profile-card-ten.vercel.app/api/journey?steps=Coding,MERN%20Stack,Mobile%20Apps,AI%20Systems,CloudSec)
+```
+
+```html
+<p align="center">
+  <img src="https://github-profile-card-ten.vercel.app/api/journey?steps=Coding,MERN%20Stack,Mobile%20Apps,AI%20Systems,CloudSec" alt="Engineering Journey" width="100%" />
+</p>
+```
+
 <br />
 
 <div align="center">
