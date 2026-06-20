@@ -16,13 +16,13 @@ You can use the hosted API directly in your GitHub `README.md`! Just add the fol
 
 ### Markdown:
 ```md
-![My GitHub Impact](https://github-profileCard.vercel.app/api/impact?username=your_username)
+![My GitHub Impact](https://github-profileCard.vercel.app/api/impact?username=manoj-chavan-13)
 ```
 
 ### HTML (Recommended for centering):
 ```html
 <p align="center">
-  <img src="https://github-profileCard.vercel.app/api/impact?username=your_username" alt="GitHub Impact Card" />
+  <img src="https://github-profileCard.vercel.app/api/impact?username=manoj-chavan-13" alt="GitHub Impact Card" />
 </p>
 ```
 
