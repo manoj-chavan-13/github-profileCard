@@ -14,6 +14,10 @@ A high-fidelity, highly-optimized service that generates real-time portfolio car
 
 <br />
 
+<img src="https://github-profile-card-ten.vercel.app/api/languages?username=manoj-chavan-13" alt="Language Analytics Card Preview" width="100%" />
+
+<br />
+
 <img src="https://github-profile-card-ten.vercel.app/api/journey?steps=Coding,MERN%20Stack,Mobile%20Apps,AI%20Systems,CloudSec" alt="Engineering Journey Card Preview" width="100%" />
 
 </div>
