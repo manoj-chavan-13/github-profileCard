@@ -79,6 +79,20 @@ Turn your GitHub contribution graph into a living cyber-security dashboard! This
 
 <br />
 
+### 📊 Language Analytics Card (Codebase Composition)
+
+Showcase your language mastery with a premium dashboard-style analytics card. This dynamically visualizes your primary tech stack by analyzing all your public repositories and rendering an accurate donut chart with precise metrics.
+
+<img src="https://github-profile-card-ten.vercel.app/api/languages?username=manoj-chavan-13" alt="Language Analytics" width="100%" />
+
+```html
+<p align="center">
+  <img src="https://github-profile-card-ten.vercel.app/api/languages?username=manoj-chavan-13" alt="Language Analytics" width="100%" />
+</p>
+```
+
+<br />
+
 ### 🏷️ Micro-Badges
 
 Enhance your profile with these premium, compact badges. Here is a live preview of each badge alongside the code you need to embed it!

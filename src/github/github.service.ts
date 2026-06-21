@@ -1,5 +1,88 @@
-import { USER_DATA_QUERY, generateYearsQuery } from './queries';
+import { USER_DATA_QUERY, generateYearsQuery, LANGUAGES_QUERY } from './queries';
 import { GitHubData } from '../types';
+
+export interface LanguageStats {
+  name: string;
+  color: string;
+  size: number;
+  percentage: number;
+}
+
+export interface LanguageData {
+  totalSize: number;
+  repositoriesCount: number;
+  languages: LanguageStats[];
+}
+
+export const getUserLanguages = async (username: string): Promise<LanguageData | null> => {
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    console.error('GITHUB_TOKEN is not defined');
+    return null;
+  }
+
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: LANGUAGES_QUERY,
+        variables: { login: username },
+      }),
+    });
+
+    const result: any = await response.json();
+
+    if (result.errors || !result.data || !result.data.user) {
+      console.error('GitHub API errors:', result.errors);
+      return null;
+    }
+
+    const repos = result.data.user.repositories;
+    const langMap = new Map<string, { size: number; color: string }>();
+    let totalSize = 0;
+
+    repos.nodes.forEach((repo: any) => {
+      if (!repo.languages || !repo.languages.edges) return;
+      repo.languages.edges.forEach((edge: any) => {
+        const name = edge.node.name;
+        const color = edge.node.color || '#858585';
+        const size = edge.size;
+
+        totalSize += size;
+        if (langMap.has(name)) {
+          const current = langMap.get(name)!;
+          langMap.set(name, { ...current, size: current.size + size });
+        } else {
+          langMap.set(name, { size, color });
+        }
+      });
+    });
+
+    const languages: LanguageStats[] = Array.from(langMap.entries())
+      .map(([name, data]) => ({
+        name,
+        color: data.color,
+        size: data.size,
+        percentage: totalSize > 0 ? (data.size / totalSize) * 100 : 0
+      }))
+      .sort((a, b) => b.size - a.size);
+
+    return {
+      totalSize,
+      repositoriesCount: repos.totalCount,
+      languages
+    };
+  } catch (error) {
+    console.error('Error fetching languages from GitHub:', error);
+    return null;
+  }
+};
+
 
 export const getUserData = async (username: string): Promise<GitHubData | null> => {
   const token = process.env.GITHUB_TOKEN;

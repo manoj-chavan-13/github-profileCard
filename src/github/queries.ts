@@ -19,6 +19,27 @@ export const USER_DATA_QUERY = `
   }
 `;
 
+export const LANGUAGES_QUERY = `
+  query userInfo($login: String!) {
+    user(login: $login) {
+      repositories(first: 100, ownerAffiliations: [OWNER], isFork: false, privacy: PUBLIC) {
+        totalCount
+        nodes {
+          languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+            edges {
+              size
+              node {
+                name
+                color
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const generateYearsQuery = (login: string, years: number[]): string => {
   const yearsStr = years.map(year => `
     year${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") {
